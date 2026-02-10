@@ -1,4 +1,4 @@
-# 🏦 DeFi Lending Protocol - Team Integration Project
+#  DeFi Lending Protocol - Team Integration Project
 
 Complete integrated DeFi protocol combining work from 4 team members:
 - **Member A**: UUPS Proxy & Upgradeable Architecture
@@ -6,7 +6,7 @@ Complete integrated DeFi protocol combining work from 4 team members:
 - **Member C**: Governance & TimeLock Security
 - **Member D**: Staking Rewards & Frontend Demo
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # 1. Install dependencies
@@ -22,7 +22,7 @@ npm run demo
 npm run test:integrated
 ```
 
-## 📋 Project Structure
+##  Project Structure
 
 ```
 contracts/
@@ -39,7 +39,7 @@ test/
 └── integrated.test.js   - Integration tests
 ```
 
-## 📖 Documentation
+##  Documentation
 
 **See [README_INTEGRATED.md](README_INTEGRATED.md) for:**
 - Detailed team roles and responsibilities
@@ -51,27 +51,27 @@ test/
 
 ## ✨ Key Features
 
-### ✅ Member A: UUPS Proxy Upgrades
+###  Member A: UUPS Proxy Upgrades
 - Upgradeable contracts without state loss
 - V1 → V2 → V1 upgrade demonstrations
 - Storage gap management
 
-### ✅ Member B: DeFi Lending
+###  Member B: DeFi Lending
 - Multi-asset lending pool
 - Collateralization & health factor tracking
 - Liquidation mechanism with oracle support
 
-### ✅ Member C: Governance
+###  Member C: Governance
 - DAO voting with ERC20Votes
 - TimeLock enforced delays
 - Emergency multi-sig override capability
 
-### ✅ Member D: Staking & Demo
+###  Member D: Staking & Demo
 - Dual-reward liquidity mining
 - Complete integration demonstration
 - Frontend dashboard
 
-## 🎬 Demo Commands
+##  Demo Commands
 
 ```bash
 # Deploy everything
@@ -85,7 +85,7 @@ npm run test
 npm run test:integrated
 ```
 
-## 📊 Workflow Demo Includes
+##  Workflow Demo Includes
 
 1. **Lending Pool Operations** (Member B)
    - Deposit collateral
@@ -107,7 +107,7 @@ npm run test:integrated
    - Upgrade to V2
    - Verify state preservation
 
-## 🔐 Security
+##  Security
 
 - ReentrancyGuard on critical functions
 - Access control via ownership & roles
@@ -115,10 +115,7 @@ npm run test:integrated
 - Emergency multi-sig controls
 - Storage gap for upgrade safety
 
-## ✅ Status: Ready for Presentation
+##  Status: Ready for Presentation
 
 All components integrated and tested.
 
----
-
-**For detailed documentation, see:** [README_INTEGRATED.md](README_INTEGRATED.md)
