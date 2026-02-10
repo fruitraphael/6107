@@ -8,38 +8,48 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 
 /**
  * @title GovernanceToken
- * @notice 用于课程项目的治理代币 (ERC20Votes)：
- *         - 支持 delegate / snapshot 投票权
- *         - onlyOwner 可以 mint，方便课堂演示给同学分发投票权
- *
- * @dev OpenZeppelin v5.x 写法：需要 override _update / nonces
+ * @notice Governance token with voting capabilities
  */
 contract GovernanceToken is ERC20, ERC20Permit, ERC20Votes, Ownable {
     constructor(address initialOwner)
         ERC20("6107 Governance Token", "GOV")
         ERC20Permit("6107 Governance Token")
-        Ownable(initialOwner)
-    {}
+        Ownable()
+    {
+        transferOwnership(initialOwner);
+    }
 
     function mint(address to, uint256 amount) external onlyOwner {
         _mint(to, amount);
     }
 
-    // --- Solidity required overrides (OZ v5) ---
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20) {
+        super._beforeTokenTransfer(from, to, amount);
+    }
 
-    function _update(address from, address to, uint256 value)
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20, ERC20Votes) {
+        super._afterTokenTransfer(from, to, amount);
+    }
+
+    function _mint(address to, uint256 amount)
         internal
         override(ERC20, ERC20Votes)
     {
-        super._update(from, to, value);
+        super._mint(to, amount);
     }
 
-    function nonces(address owner)
-        public
-        view
-        override(ERC20Permit, Nonces)
-        returns (uint256)
+    function _burn(address account, uint256 amount)
+        internal
+        override(ERC20, ERC20Votes)
     {
-        return super.nonces(owner);
+        super._burn(account, amount);
     }
 }

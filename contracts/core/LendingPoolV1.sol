@@ -4,7 +4,6 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
 
 // 1. 引入 Member B 的代码 (必须在同一目录下)
 import "./LendingPoolCore.sol"; 
@@ -13,8 +12,7 @@ contract LendingPoolV1 is
     LendingPoolCore,            // <--- 继承 Member B 的业务逻辑
     Initializable, 
     UUPSUpgradeable, 
-    OwnableUpgradeable, 
-    ReentrancyGuardUpgradeable 
+    OwnableUpgradeable 
 {
     // Storage Gap
     // 预留 50 个槽位，防止未来升级时覆盖了父类的变量，或者是新加变量没地方放
@@ -28,16 +26,14 @@ contract LendingPoolV1 is
         _disableInitializers();
     }
 
-    // 初始化函数 (Proxy 的实际"构造函数")
     function initialize(
         address _collateral, 
         address _borrow, 
-        address _initialOwner
+        address /* _initialOwner */
     ) public initializer {
         // 1. 初始化 OpenZeppelin 模块
-        __Ownable_init(_initialOwner);
+        __Ownable_init();
         __UUPSUpgradeable_init();
-        __ReentrancyGuard_init();
 
         // 2. [关键操作] 重新初始化 Member B 的变量
         // 因为 Proxy 不会运行 LendingPoolCore 的 constructor
